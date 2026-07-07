@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-04-14T10:24:00Z",
+  "totalTasks": 0,
+  "tasks": [],
+  "statistics": {
+    "byStatus": {
+      "pending": 0,
+      "in-progress": 0,
+      "completed": 0,
+      "paused": 0,
+      "failed": 0
+    },
+    "totalSteps": 0,
+    "completedSteps": 0,
+    "averageCompletionTime": null
+  }
+}

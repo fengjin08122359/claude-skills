@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-04-14T09:50:00Z",
+  "totalIssues": 2,
+  "issues": [
+    {
+      "id": "VUE-TEMPLATE-TYPE-ASSERTION-001",
+      "title": "Vue模板中禁止使用TS类型断言",
+      "severity": "high",
+      "category": "vue-anti-pattern",
+      "occurrenceCount": 1,
+      "status": "active",
+      "createdAt": "2026-04-14T09:50:00Z"
+    },
+    {
+      "id": "VUE-OPTIONAL-CHAINING-001",
+      "title": "Vue 2.7模板禁止使用可选链操作符",
+      "severity": "high",
+      "category": "vue-anti-pattern",
+      "occurrenceCount": 1,
+      "status": "active",
+      "createdAt": "2026-04-14T09:50:00Z"
+    }
+  ],
+  "statistics": {
+    "bySeverity": {
+      "critical": 0,
+      "high": 2,
+      "medium": 0,
+      "low": 0
+    },
+    "byCategory": {
+      "vue-anti-pattern": 2,
+      "type-safety": 0,
+      "performance": 0,
+      "memory-leak": 0,
+      "maintainability": 0
+    },
+    "byStatus": {
+      "active": 2,
+      "deprecated": 0,
+      "resolved": 0
+    },
+    "topFrequent": [
+      {
+        "issueId": "VUE-TEMPLATE-TYPE-ASSERTION-001",
+        "title": "Vue模板中禁止使用TS类型断言",
+        "occurrenceCount": 1
+      },
+      {
+        "issueId": "VUE-OPTIONAL-CHAINING-001",
+        "title": "Vue 2.7模板禁止使用可选链操作符",
+        "occurrenceCount": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "taskId": "combination-v2-todo-phase2",
+  "planId": "combination-v2-refactor-plan",
+  "title": "Combination-V2 阶段2: 业务逻辑完善",
+  "description": "完善表单验证、数据导出、用户体验优化等业务功能",
+  "status": "completed",
+  "steps": [
+    {
+      "id": "task-2.1",
+      "number": 1,
+      "title": "完善表单验证和交互逻辑",
+      "status": "completed"
+    },
+    {
+      "id": "task-2.2",
+      "number": 2,
+      "title": "实现数据导出功能",
+      "status": "completed"
+    },
+    {
+      "id": "task-2.3",
+      "number": 3,
+      "title": "优化表格交互体验",
+      "status": "completed"
+    },
+    {
+      "id": "task-2.4",
+      "number": 4,
+      "title": "完善错误处理和用户提示",
+      "status": "completed"
+    },
+    {
+      "id": "task-2.5",
+      "number": 5,
+      "title": "实现批量操作功能",
+      "status": "completed"
+    },
+    {
+      "id": "task-2.6",
+      "number": 6,
+      "title": "优化加载状态和骨架屏",
+      "status": "completed"
+    },
+    {
+      "id": "task-2.7",
+      "number": 7,
+      "title": "完善搜索和筛选功能",
+      "status": "completed"
+    },
+    {
+      "id": "task-2.8",
+      "number": 8,
+      "title": "实现数据缓存策略",
+      "status": "completed"
+    }
+  ],
+  "progress": {
+    "currentStep": 8,
+    "totalSteps": 8,
+    "completedSteps": 8,
+    "failedSteps": 0,
+    "skippedSteps": 0,
+    "percentage": 100.0
+  },
+  "timing": {
+    "createdAt": "2026-05-13T10:30:00Z",
+    "startedAt": "2026-05-13T10:30:00Z"
+  },
+  "context": {
+    "workspaceRoot": "c:\\work\\monorepo-test",
+    "currentBranch": "combination-v2",
+    "relatedFiles": [
+      "workspaces/app-combination/src/pages/combination-v2"
+    ]
+  },
+  "metadata": {
+    "createdBy": "dev-help",
+    "lastUpdatedBy": "dev-help",
+    "priority": "medium",
+    "tags": [
+      "combination-v2",
+      "business-logic",
+      "phase2"
+    ]
+  }
+}

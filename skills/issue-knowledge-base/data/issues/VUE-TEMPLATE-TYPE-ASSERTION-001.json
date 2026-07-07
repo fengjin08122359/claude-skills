@@ -1,0 +1,63 @@
+{
+  "id": "VUE-TEMPLATE-TYPE-ASSERTION-001",
+  "title": "Vue模板中禁止使用TS类型断言",
+  "description": "在 Vue 2.7 模板中使用 TypeScript 类型断言（如 `as any`）会导致编译错误。Vue 模板编译器不支持 TypeScript 语法。",
+  "severity": "high",
+  "category": "vue-anti-pattern",
+  "triggers": [
+    {
+      "codePattern": "\\{\\{.*\\s+as\\s+(any|string|number|boolean).*\\}\\}"
+    }
+  ],
+  "impact": {
+    "fileTypes": [
+      ".vue"
+    ],
+    "consequences": "TypeScript 编译失败，无法构建项目"
+  },
+  "solution": {
+    "summary": "在 script 中处理类型转换，模板中只使用已正确类型的变量",
+    "steps": [
+      {
+        "description": "在 setup 或 computed 中进行类型断言",
+        "beforeCode": "<template>\n  <div>{{ user as any }}</div>\n</template>",
+        "afterCode": "<script setup lang=\"ts\">\nconst safeUser = computed(() => user.value as UserType);\n</script>\n<template>\n  <div>{{ safeUser }}</div>\n</template>",
+        "verifyCommand": "pnpm vue-tsc --noEmit"
+      }
+    ]
+  },
+  "prevention": {
+    "guidelines": [
+      "模板中只使用简单表达式",
+      "复杂逻辑放在 computed 或 methods 中",
+      "确保所有模板变量都有正确的类型定义"
+    ],
+    "reviewCheckpoints": [
+      "检查模板中是否有 as 关键字",
+      "确认所有变量都有明确的类型"
+    ]
+  },
+  "examples": {
+    "badExample": {
+      "code": "<template>\n  <div>{{ (data as any).name }}</div>\n</template>",
+      "explanation": "在模板中使用类型断言会导致编译错误"
+    },
+    "goodExample": {
+      "code": "<script setup lang=\"ts\">\nconst name = computed(() => (data.value as DataType).name);\n</script>\n<template>\n  <div>{{ name }}</div>\n</template>",
+      "explanation": "在 computed 中处理类型转换，模板保持简洁"
+    }
+  },
+  "metadata": {
+    "createdAt": "2026-04-14T09:50:00Z",
+    "updatedAt": "2026-04-14T09:50:00Z",
+    "createdBy": "dev-advisor",
+    "occurrenceCount": 1,
+    "tags": [
+      "vue",
+      "typescript",
+      "template",
+      "compilation-error"
+    ],
+    "status": "active"
+  }
+}

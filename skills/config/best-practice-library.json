@@ -1,0 +1,36 @@
+{
+  "$schema": "./.lingma/skills/best-practice-library.schema.json",
+  "storage": {
+    "practicesDir": ".lingma/skills/best-practice-library/data/practices",
+    "archivesDir": ".lingma/skills/best-practice-library/data/archives",
+    "indexFile": "index.json"
+  },
+  "recommendation": {
+    "minConfidence": "medium",
+    "maxResults": 5,
+    "enableUsageWeighting": true,
+    "weights": {
+      "techStackMatch": 0.4,
+      "scenarioMatch": 0.3,
+      "usageFrequency": 0.2,
+      "confidence": 0.1
+    }
+  },
+  "versioning": {
+    "autoIncrement": true,
+    "keepHistory": true,
+    "maxVersions": 10,
+    "versionFormat": "semver"
+  },
+  "maintenance": {
+    "reviewIntervalDays": 90,
+    "deprecateUnusedAfterDays": 365,
+    "requireApprovalForNew": true,
+    "maxPracticesPerCategory": 20
+  },
+  "tracking": {
+    "recordUsage": true,
+    "collectFeedback": true,
+    "successRateThreshold": 0.8
+  }
+}

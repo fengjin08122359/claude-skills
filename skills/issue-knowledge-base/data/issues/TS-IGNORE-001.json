@@ -1,0 +1,101 @@
+{
+  "id": "TS-IGNORE-001",
+  "title": "避免使用 @ts-ignore 抑制 TypeScript 错误",
+  "description": "在 Vue 2 + Composition API 迁移过程中，发现部分代码使用了 @ts-ignore 来抑制 TypeScript 类型检查错误。虽然某些情况下（如访问 Vue 2 实例属性）是必要的，但应优先通过完善类型定义来解决问题，而不是简单地忽略类型错误。",
+  "severity": "medium",
+  "category": "type-safety",
+  "triggers": [
+    {
+      "codePattern": "//\\s*@ts-ignore"
+    }
+  ],
+  "impact": {
+    "modules": [
+      "combination-reform"
+    ],
+    "fileTypes": [
+      "*.vue",
+      "*.ts"
+    ],
+    "consequences": "使用 @ts-ignore 会掩盖潜在的TypeScript类型错误，降低代码的类型安全性，可能导致运行时错误无法在编译时发现。长期来看会降低代码质量和可维护性。"
+  },
+  "solution": {
+    "summary": "优先完善类型定义，只在必要时（如访问 Vue 2 实例属性）使用 @ts-ignore，并添加注释说明原因。",
+    "steps": [
+      {
+        "description": "识别 @ts-ignore 的使用场景",
+        "action": "modify-code",
+        "beforeCode": "// @ts-ignore\nconst authorize = instance?.proxy?.$store.state.root.authorize;",
+        "afterCode": "// 访问 Vue 2 实例的 store（Vue 2 不支持 useStore hook）\nconst authorize = (instance?.proxy as any)?.$store.state.root.authorize;"
+      },
+      {
+        "description": "为 EventBus 方法调用添加正确的类型",
+        "action": "modify-code",
+        "beforeCode": "// @ts-ignore\neventBus.removeListener(\"container-content-change\");",
+        "afterCode": "// EventBus.removeListener 只接受事件名参数\n(eventBus as any).removeListener(\"container-content-change\");"
+      },
+      {
+        "description": "完善接口定义以消除类型错误",
+        "action": "refactor",
+        "expectedOutcome": "通过完善 TypeScript 接口定义，使类型系统能够正确推断类型，无需使用 @ts-ignore"
+      }
+    ]
+  },
+  "prevention": {
+    "guidelines": [
+      "优先完善类型定义，而不是使用 @ts-ignore",
+      "如果必须使用 @ts-ignore，添加详细注释说明原因",
+      "定期审查代码中的 @ts-ignore，尝试找到更好的解决方案",
+      "为 Vue 2 兼容性场景创建专门的类型辅助函数",
+      "建立代码审查机制，确保新代码不随意添加 @ts-ignore"
+    ],
+    "recommendedTools": [
+      "TypeScript Compiler",
+      "ESLint with @typescript-eslint/no-ts-ignore rule"
+    ],
+    "reviewCheckpoints": [
+      "代码审查时检查所有 @ts-ignore 的使用是否合理",
+      "定期运行 ESLint 检查是否有新的 @ts-ignore 被添加",
+      "评估是否可以通过改进类型定义来消除 @ts-ignore"
+    ]
+  },
+  "resources": [
+    {
+      "title": "TypeScript - Suppressing Errors",
+      "type": "documentation",
+      "url": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#ignored-type-errors",
+      "description": "TypeScript 官方文档关于抑制类型错误的说明"
+    },
+    {
+      "title": "Vue 2 + Composition API 类型安全最佳实践",
+      "type": "article",
+      "url": "https://composition-api.vuejs.org/zh/api.html",
+      "description": "Vue Composition API 官方文档"
+    }
+  ],
+  "metadata": {
+    "createdAt": "2026-04-16T10:00:00Z",
+    "updatedAt": "2026-04-16T10:30:00Z",
+    "createdBy": "AI Assistant",
+    "occurrenceCount": 0,
+    "lastOccurredAt": "2026-04-16T10:00:00Z",
+    "tags": [
+      "typescript",
+      "vue2",
+      "composition-api",
+      "type-safety",
+      "migration"
+    ],
+    "status": "resolved"
+  },
+  "examples": {
+    "badExample": {
+      "code": "// @ts-ignore\nconst authorize = instance?.proxy?.$store.state.root.authorize;\n\n// @ts-ignore\neventBus.removeListener(\"event-name\");",
+      "explanation": "直接使用 @ts-ignore 而不说明原因，掩盖了真正的类型问题，降低了代码的可维护性。"
+    },
+    "goodExample": {
+      "code": "// 访问 Vue 2 实例的 store（Vue 2 不支持 useStore hook）\nconst authorize = (instance?.proxy as any)?.$store.state.root.authorize;\n\n// EventBus.removeListener 在项目中只接受单个参数\n(eventBus as any).removeListener(\"container-content-change\");",
+      "explanation": "使用类型断言 (as any) 替代 @ts-ignore，并添加注释说明原因。这样既保持了代码的可读性，又明确表达了这是有意为之的类型转换。"
+    }
+  }
+}

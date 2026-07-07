@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "codebase-memory-mcp": {
+      "url": "http://localhost:9749"
+    }
+  }
+}

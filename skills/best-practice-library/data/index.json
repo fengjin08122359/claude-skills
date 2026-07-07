@@ -1,0 +1,74 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-04-14T09:50:00Z",
+  "totalPractices": 2,
+  "practices": [
+    {
+      "id": "VUE-COMPOSITION-API-001",
+      "name": "优先使用 Composition API",
+      "category": "component-design",
+      "confidence": "high",
+      "usageCount": 1,
+      "status": "recommended",
+      "createdAt": "2026-04-14T09:50:00Z",
+      "tags": [
+        "vue",
+        "composition-api",
+        "typescript",
+        "component-design"
+      ]
+    },
+    {
+      "id": "VUE-COMPUTED-LOGIC-001",
+      "name": "Vue复杂逻辑使用Computed",
+      "category": "component-design",
+      "confidence": "high",
+      "usageCount": 1,
+      "status": "recommended",
+      "createdAt": "2026-04-14T09:50:00Z",
+      "tags": [
+        "vue",
+        "computed",
+        "performance",
+        "best-practice"
+      ]
+    }
+  ],
+  "statistics": {
+    "byCategory": {
+      "component-design": 2,
+      "state-management": 0,
+      "performance": 0,
+      "security": 0,
+      "testing": 0
+    },
+    "byConfidence": {
+      "high": 2,
+      "medium": 0,
+      "low": 0
+    },
+    "byStatus": {
+      "recommended": 2,
+      "experimental": 0,
+      "deprecated": 0
+    },
+    "mostUsed": [
+      {
+        "practiceId": "VUE-COMPOSITION-API-001",
+        "name": "优先使用 Composition API",
+        "usageCount": 1
+      },
+      {
+        "practiceId": "VUE-COMPUTED-LOGIC-001",
+        "name": "Vue复杂逻辑使用Computed",
+        "usageCount": 1
+      }
+    ],
+    "techStackDistribution": {
+      "vue": 2,
+      "typescript": 2,
+      "react": 0,
+      "angular": 0
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "./.lingma/skills/step-executor.schema.json",
+  "execution": {
+    "defaultMode": "safe",
+    "autoSaveProgress": true,
+    "progressFile": ".step-executor-progress.json",
+    "maxConcurrentSteps": 1
+  },
+  "verification": {
+    "parallelEnabled": true,
+    "maxParallelCommands": 2,
+    "defaultTimeout": 30000,
+    "commands": {
+      "typescript": "pnpm vue-tsc --noEmit",
+      "eslint": "pnpm eslint --fix",
+      "test": "pnpm test --passWithNoTests",
+      "build": "pnpm build"
+    }
+  },
+  "retry": {
+    "enabled": true,
+    "maxRetries": 3,
+    "backoffMultiplier": 2,
+    "initialDelay": 1000,
+    "retryableErrors": [
+      "network-timeout",
+      "transient-error",
+      "resource-busy"
+    ]
+  },
+  "rollback": {
+    "autoBackup": true,
+    "backupDir": ".step-executor-backups",
+    "strategy": "git-checkout",
+    "keepBackupsForDays": 7
+  },
+  "batchExecution": {
+    "enabled": true,
+    "maxBatchSize": 3,
+    "onlyLowRisk": true
+  },
+  "notifications": {
+    "onStepComplete": false,
+    "onTaskComplete": true,
+    "onTaskFailed": true,
+    "onPause": false
+  }
+}

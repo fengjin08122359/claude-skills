@@ -1,0 +1,35 @@
+{
+  "name": "jest-test-generator-skill",
+  "version": "1.0.0",
+  "description": "Jest 单元测试生成器 - 自动生成 Vue 组件、Store、API 的单元测试",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "jest",
+    "unit-test",
+    "vue-test",
+    "testing-library",
+    "test-automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.0",
+    "chalk": "^4.1.2",
+    "prettier": "^2.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/fs-extra": "^11.0.1",
+    "typescript": "^4.9.4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

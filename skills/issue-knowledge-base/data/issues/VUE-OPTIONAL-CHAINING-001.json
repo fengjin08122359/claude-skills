@@ -1,0 +1,72 @@
+{
+  "id": "VUE-OPTIONAL-CHAINING-001",
+  "title": "Vue 2.7模板禁止使用可选链操作符",
+  "description": "在 Vue 2.7 的模板中使用可选链操作符（`?.`）会导致编译错误。Vue 2.7 的模板编译器不支持 ES2020 的可选链语法。",
+  "severity": "high",
+  "category": "vue-anti-pattern",
+  "triggers": [
+    {
+      "codePattern": "\\{\\{.*\\?\\..*\\}\\}"
+    }
+  ],
+  "impact": {
+    "fileTypes": [
+      ".vue"
+    ],
+    "consequences": "TypeScript/Vue 编译失败，项目无法运行"
+  },
+  "solution": {
+    "summary": "使用逻辑与运算符（&&）或 computed 属性代替可选链",
+    "steps": [
+      {
+        "description": "使用 && 运算符进行空值检查",
+        "beforeCode": "<template>\n  <div>{{ user?.name }}</div>\n</template>",
+        "afterCode": "<template>\n  <div>{{ user && user.name }}</div>\n</template>",
+        "verifyCommand": "pnpm vue-tsc --noEmit"
+      },
+      {
+        "description": "或使用 computed 属性（推荐）",
+        "beforeCode": "<template>\n  <div>{{ user?.profile?.email }}</div>\n</template>",
+        "afterCode": "<script setup lang=\"ts\">\nconst userEmail = computed(() => user.value?.profile?.email ?? '');\n</script>\n<template>\n  <div>{{ userEmail }}</div>\n</template>",
+        "verifyCommand": "pnpm vue-tsc --noEmit"
+      }
+    ]
+  },
+  "prevention": {
+    "guidelines": [
+      "在 script 中处理可能为空的访问",
+      "使用 computed 属性封装复杂的安全访问逻辑",
+      "提供默认值避免 undefined"
+    ],
+    "recommendedTools": [
+      "@typescript-eslint/no-unsafe-member-access"
+    ],
+    "reviewCheckpoints": [
+      "检查模板中是否有 ?. 操作符",
+      "确认所有可能的空值都有处理"
+    ]
+  },
+  "examples": {
+    "badExample": {
+      "code": "<template>\n  <div>{{ config?.settings?.theme?.color }}</div>\n</template>",
+      "explanation": "多层可选链在 Vue 2.7 模板中不被支持"
+    },
+    "goodExample": {
+      "code": "<script setup lang=\"ts\">\nconst themeColor = computed(() => \n  config.value?.settings?.theme?.color ?? 'default'\n);\n</script>\n<template>\n  <div>{{ themeColor }}</div>\n</template>",
+      "explanation": "在 computed 中安全地访问嵌套属性，并提供默认值"
+    }
+  },
+  "metadata": {
+    "createdAt": "2026-04-14T09:50:00Z",
+    "updatedAt": "2026-04-14T09:50:00Z",
+    "createdBy": "dev-advisor",
+    "occurrenceCount": 1,
+    "tags": [
+      "vue",
+      "optional-chaining",
+      "template",
+      "compilation-error"
+    ],
+    "status": "active"
+  }
+}

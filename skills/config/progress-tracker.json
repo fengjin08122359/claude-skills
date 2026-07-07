@@ -1,0 +1,47 @@
+{
+  "$schema": "./.lingma/skills/progress-tracker.schema.json",
+  "storage": {
+    "tasksDir": ".lingma/skills/progress-tracker/data/tasks",
+    "archivesDir": ".lingma/skills/progress-tracker/data/archives",
+    "sessionFile": "session.json"
+  },
+  "autosave": {
+    "enabled": true,
+    "intervalSeconds": 5,
+    "onStepComplete": true,
+    "beforePause": true
+  },
+  "retention": {
+    "archiveAfterDays": 30,
+    "deleteArchivedAfterDays": 90,
+    "maxTasksPerUser": 100,
+    "compressArchives": true
+  },
+  "notifications": {
+    "enabled": true,
+    "events": [
+      "task-complete",
+      "task-failed"
+    ],
+    "channels": [
+      "console"
+    ]
+  },
+  "visualization": {
+    "enableProgressBar": true,
+    "progressBarWidth": 30,
+    "statusIcons": {
+      "pending": "⏳",
+      "executing": "⚙️",
+      "verifying": "🔍",
+      "completed": "✅",
+      "failed": "❌",
+      "skipped": "⏭️"
+    }
+  },
+  "concurrency": {
+    "maxConcurrentTasks": 3,
+    "queueEnabled": true,
+    "prioritySupport": true
+  }
+}

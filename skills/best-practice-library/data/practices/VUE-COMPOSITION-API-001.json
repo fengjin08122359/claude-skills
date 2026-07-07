@@ -1,0 +1,172 @@
+{
+  "id": "VUE-COMPOSITION-API-001",
+  "name": "优先使用 Composition API",
+  "summary": "在 Vue 2.7+ 项目中，新组件应优先使用 <script setup> 语法和 Composition API。",
+  "description": "Composition API 提供更好的逻辑复用、类型推断和代码组织能力。Vue 2.7 完全支持 Composition API，应与 Options API 保持一致的代码风格。",
+  "category": "component-design",
+  "techStack": {
+    "vueVersion": ">=2.7.0",
+    "typescriptVersion": ">=4.5.0",
+    "requiredPackages": [
+      "vue@^2.7.0"
+    ],
+    "recommendedPackages": [
+      "@vueuse/core"
+    ]
+  },
+  "scenarios": [
+    {
+      "description": "新建页面组件或复杂业务组件",
+      "useCases": [
+        "包含多个功能模块的页面",
+        "需要复用逻辑的组件",
+        "需要良好类型支持的组件"
+      ],
+      "notApplicableWhen": [
+        "简单的展示型组件（<50 行）",
+        "迁移成本过高的遗留组件"
+      ]
+    }
+  ],
+  "implementation": {
+    "principles": [
+      "使用 <script setup> 语法糖",
+      "逻辑按功能组织，而非生命周期钩子",
+      "提取可复用的 composables",
+      "明确的类型注解"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "使用 <script setup> 声明组件",
+        "codeExample": "<script setup lang=\"ts\">\nimport { ref, computed } from 'vue';\n\n// 响应式数据\nconst count = ref(0);\n\n// 计算属性\nconst doubleCount = computed(() => count.value * 2);\n\n// 方法\nfunction increment() {\n  count.value++;\n}\n</script>",
+        "notes": "确保 lang=\"ts\" 以启用 TypeScript"
+      },
+      {
+        "step": 2,
+        "action": "定义 Props 和 Emits",
+        "codeExample": "const props = defineProps<{\n  title: string;\n  count?: number;\n}>();\n\nconst emit = defineEmits<{\n  (e: 'update', value: number): void;\n  (e: 'change'): void;\n}>();",
+        "notes": "使用泛型语法获得更好的类型推断"
+      },
+      {
+        "step": 3,
+        "action": "提取 Composables",
+        "codeExample": "// composables/useCounter.ts\nimport { ref, computed } from 'vue';\n\nexport function useCounter(initialValue = 0) {\n  const count = ref(initialValue);\n  const doubleCount = computed(() => count.value * 2);\n  \n  function increment() {\n    count.value++;\n  }\n  \n  return {\n    count,\n    doubleCount,\n    increment\n  };\n}",
+        "notes": "Composables 应以 use 开头命名"
+      }
+    ],
+    "requirements": [
+      {
+        "requirement": "所有新组件必须使用 <script setup>",
+        "mandatory": true,
+        "verificationMethod": "lint-rule",
+        "relatedRule": "vue/block-lang"
+      },
+      {
+        "requirement": "Props 必须有完整的类型定义",
+        "mandatory": true,
+        "verificationMethod": "code-review"
+      },
+      {
+        "requirement": "复杂逻辑应提取为 composables",
+        "mandatory": false,
+        "verificationMethod": "code-review"
+      }
+    ],
+    "examples": {
+      "standard": {
+        "description": "标准的用户列表页面组件",
+        "code": "<script setup lang=\"ts\">\nimport { ref, onMounted } from 'vue';\nimport { useUserList } from '@/composables/useUserList';\nimport UserCard from '@/components/UserCard.vue';\n\ninterface User {\n  id: string;\n  name: string;\n  email: string;\n}\n\nconst { users, loading, fetchUsers } = useUserList();\n\nonMounted(() => {\n  fetchUsers();\n});\n</script>\n\n<template>\n  <div class=\"user-list\">\n    <UserCard v-for=\"user in users\" :key=\"user.id\" :user=\"user\" />\n  </div>\n</template>",
+        "filePath": "src/views/user-list/index.vue"
+      },
+      "variants": [
+        {
+          "name": "带错误处理的变体",
+          "description": "包含完整的错误处理和加载状态",
+          "code": "<script setup lang=\"ts\">\nimport { ref, onMounted } from 'vue';\nimport { ElMessage } from 'element-plus';\n\nconst users = ref<User[]>([]);\nconst loading = ref(false);\nconst error = ref<string | null>(null);\n\nasync function fetchUsers() {\n  loading.value = true;\n  error.value = null;\n  \n  try {\n    const response = await api.getUsers();\n    users.value = response.data;\n  } catch (err) {\n    error.value = err instanceof Error ? err.message : 'Unknown error';\n    ElMessage.error('获取用户列表失败');\n  } finally {\n    loading.value = false;\n  }\n}\n\nonMounted(fetchUsers);\n</script>",
+          "whenToUse": "需要向用户显示错误信息的场景"
+        }
+      ]
+    }
+  },
+  "tradeoffs": {
+    "benefits": [
+      "更好的 TypeScript 类型推断",
+      "逻辑复用更灵活（composables）",
+      "代码组织更清晰（按功能而非生命周期）",
+      "更小的打包体积（tree-shaking 友好）"
+    ],
+    "drawbacks": [
+      "学习曲线较陡",
+      "需要额外的规范约束（避免滥用）",
+      "调试工具支持不如 Options API 成熟"
+    ],
+    "comparisons": [
+      {
+        "alternativePattern": "Options API",
+        "whenToChooseThis": "新项目、复杂组件、需要类型安全",
+        "whenToChooseAlternative": "简单组件、快速原型、团队成员不熟悉 Composition API"
+      }
+    ]
+  },
+  "performance": {
+    "metrics": [
+      {
+        "metric": "组件初始化时间",
+        "baseline": "~5ms (Options API)",
+        "optimized": "~3ms (Composition API)",
+        "measurementMethod": "Chrome DevTools Performance 面板"
+      }
+    ],
+    "optimizationTips": [
+      "避免在 setup 中执行昂贵操作",
+      "使用 shallowRef 处理大型对象",
+      "合理使用 watchEffect vs watch"
+    ]
+  },
+  "relatedPatterns": {
+    "complementary": [
+      "COMPOSABLE-EXTRACTION-001",
+      "TYPESCRIPT-STRICT-001"
+    ],
+    "alternatives": [
+      "OPTIONS-API-PATTERN"
+    ],
+    "prerequisites": [
+      "TYPESCRIPT-BASICS-001"
+    ]
+  },
+  "metadata": {
+    "createdAt": "2026-04-14T09:50:00Z",
+    "updatedAt": "2026-04-14T09:50:00Z",
+    "source": "AGENTS.md + 团队共识",
+    "confidence": "high",
+    "usageCount": 1,
+    "successCases": [
+      "app-company 用户中心重构",
+      "app-analysis 模型分析页面"
+    ],
+    "status": "recommended",
+    "tags": [
+      "vue",
+      "composition-api",
+      "typescript",
+      "component-design"
+    ],
+    "version": "1.0.0"
+  },
+  "references": [
+    {
+      "title": "Vue 3 Composition API 文档",
+      "type": "official-doc",
+      "url": "https://cn.vuejs.org/guide/extras/composition-api-faq.html",
+      "summary": "官方 Composition API 详细说明"
+    },
+    {
+      "title": "项目 AGENTS.md - Vue 组件开发规范",
+      "type": "internal-doc",
+      "location": "c:\\work\\monorepo-test\\AGENTS.md",
+      "summary": "项目特定的组件开发约定"
+    }
+  ]
+}

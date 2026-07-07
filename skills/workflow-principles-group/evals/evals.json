@@ -1,0 +1,222 @@
+{
+  "skill_name": "workflow-principles-group",
+  "description": "A skill group for structured development workflow with TDD principles and feature-module classification",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "init-workflow-module-identify",
+      "prompt": "开始处理这个任务：修改用户登录功能，需要修改 user.ts 和 auth.ts 文件",
+      "expected_output": "应该触发 init-workflow-context skill，识别功能模块（user-module），检查模块目录结构，按模块加载记忆",
+      "files": [],
+      "assertions": [
+        {
+          "name": "identifies_function_module",
+          "description": "检查是否正确识别功能模块",
+          "type": "output_contains",
+          "value": ["功能模块识别", "user-module", "模块目录"]
+        },
+        {
+          "name": "checks_module_directory",
+          "description": "检查是否检查模块目录结构",
+          "type": "output_contains",
+          "value": ["modules/user-module/", "issues/low/", "issues/medium/", "issues/high/"]
+        },
+        {
+          "name": "loads_module_memory",
+          "description": "检查是否按模块加载记忆",
+          "type": "output_contains",
+          "value": ["已加载记忆", "user-module", "模块索引"]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "analyze-low-module-storage",
+      "prompt": "帮我修改一下 config.ts 文件，添加一个 getEnvValue 函数来获取环境变量",
+      "expected_output": "应该识别 config-module，进行低难度评分，制定TDD测试计划，使用tracer-bullet拆分issues，保存到 modules/config-module/issues/low/",
+      "files": [],
+      "assertions": [
+        {
+          "name": "identifies_config_module",
+          "description": "检查是否识别 config-module",
+          "type": "output_contains",
+          "value": ["config-module", "配置模块"]
+        },
+        {
+          "name": "performs_complexity_score",
+          "description": "检查是否进行复杂度评分",
+          "type": "output_contains",
+          "value": ["复杂度评分", "≤10分", "低难度"]
+        },
+        {
+          "name": "plans_tdd_test",
+          "description": "检查是否制定TDD测试计划",
+          "type": "output_contains",
+          "value": ["TDD", "RED", "GREEN"]
+        },
+        {
+          "name": "uses_tracer_bullet",
+          "description": "检查是否使用tracer-bullet方法",
+          "type": "output_contains",
+          "value": ["tracer-bullet", "纵向切片", "AFK"]
+        },
+        {
+          "name": "saves_to_module_directory",
+          "description": "检查是否保存到模块目录",
+          "type": "output_contains",
+          "value": ["modules/config-module/issues/low/", "存储路径"]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "eval_name": "analyze-high-module-unit-test",
+      "prompt": "需要重构用户模块的认证流程，涉及 user.ts, auth.ts, session.ts, token.ts 四个文件，需要改变现有的架构设计",
+      "expected_output": "应该识别 user-module/auth-module，高难度评分，拆分子需求，创建需求文档和单元测试计划，保存到 modules/user-module/requirements/high/，等待用户确认",
+      "files": [],
+      "assertions": [
+        {
+          "name": "identifies_module",
+          "description": "检查是否识别功能模块",
+          "type": "output_contains",
+          "value": ["user-module", "auth-module", "功能模块识别"]
+        },
+        {
+          "name": "identifies_high_difficulty",
+          "description": "检查是否识别为高难度",
+          "type": "output_contains",
+          "value": ["高难度", "≥16分"]
+        },
+        {
+          "name": "requires_unit_test",
+          "description": "检查是否要求单元测试",
+          "type": "output_contains",
+          "value": ["必须单元测试", "单元测试计划", "覆盖率"]
+        },
+        {
+          "name": "creates_test_plan_in_module",
+          "description": "检查是否在模块内创建测试计划",
+          "type": "output_contains",
+          "value": ["requirements/high/tests/", "test-plan"]
+        },
+        {
+          "name": "saves_to_module_high",
+          "description": "检查是否保存到模块高难度目录",
+          "type": "output_contains",
+          "value": ["modules/user-module/requirements/high/", "modules/user-module/issues/high/"]
+        },
+        {
+          "name": "asks_user_confirmation",
+          "description": "检查是否请求用户确认",
+          "type": "output_contains",
+          "value": ["请确认", "同意拆分方案"]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "eval_name": "coding-principles-tdd",
+      "prompt": "按照 coding-principles skill 的要求，修改 login.ts 文件添加错误处理",
+      "expected_output": "应该展示4条编码原则的应用，包括TDD循环",
+      "files": [],
+      "assertions": [
+        {
+          "name": "shows_think_before_coding",
+          "description": "检查是否展示规则1",
+          "type": "output_contains",
+          "value": ["编码前先思考", "假设", "提问"]
+        },
+        {
+          "name": "shows_simplicity_first",
+          "description": "检查是否展示规则2",
+          "type": "output_contains",
+          "value": ["简洁优先", "最少代码"]
+        },
+        {
+          "name": "shows_surgical_changes",
+          "description": "检查是否展示规则3",
+          "type": "output_contains",
+          "value": ["外科手术式修改", "只触碰必须修改"]
+        },
+        {
+          "name": "shows_goal_driven",
+          "description": "检查是否展示规则4",
+          "type": "output_contains",
+          "value": ["目标驱动", "成功标准"]
+        },
+        {
+          "name": "shows_tdd_cycle",
+          "description": "检查是否展示TDD循环",
+          "type": "output_contains",
+          "value": ["RED", "GREEN", "REFACTOR"]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "eval_name": "finalize-module-classified",
+      "prompt": "任务已完成，请总结并更新 memory。我们完成了用户模块的认证重构，单元测试覆盖率 85%，修改了 user.ts 和 auth.ts",
+      "expected_output": "应该识别 user-module，按模块分类更新 issues 和 requirements 状态，更新模块记忆，按模块分类归档",
+      "files": [],
+      "assertions": [
+        {
+          "name": "identifies_module",
+          "description": "检查是否识别功能模块",
+          "type": "output_contains",
+          "value": ["user-module", "功能模块识别"]
+        },
+        {
+          "name": "updates_module_issues",
+          "description": "检查是否按模块更新issues",
+          "type": "output_contains",
+          "value": ["user-module Issues", "modules/user-module/issues/high/", "单元测试通过"]
+        },
+        {
+          "name": "updates_module_requirements",
+          "description": "检查是否按模块更新需求",
+          "type": "output_contains",
+          "value": ["user-module Requirements", "modules/user-module/requirements/high/"]
+        },
+        {
+          "name": "updates_module_memory",
+          "description": "检查是否更新模块记忆",
+          "type": "output_contains",
+          "value": ["模块记忆", "decisions.md", "learnings.md"]
+        },
+        {
+          "name": "archives_by_module",
+          "description": "检查是否按模块归档",
+          "type": "output_contains",
+          "value": ["归档", "user-module", "issues/high/archived/"]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "eval_name": "multi-module-task",
+      "prompt": "需要实现批量导入用户功能，涉及 user.ts（用户处理）和 import.ts（导入逻辑）两个模块",
+      "expected_output": "应该识别多个模块（user-module 和 import-module），拆分 issues 时保存到各自模块目录",
+      "files": [],
+      "assertions": [
+        {
+          "name": "identifies_multiple_modules",
+          "description": "检查是否识别多个模块",
+          "type": "output_contains",
+          "value": ["user-module", "import-module", "涉及模块"]
+        },
+        {
+          "name": "saves_to_respective_modules",
+          "description": "检查是否保存到各自模块目录",
+          "type": "output_contains",
+          "value": ["modules/user-module/", "modules/import-module/"]
+        },
+        {
+          "name": "classifies_by_difficulty_within_module",
+          "description": "检查是否在模块内按难度分类",
+          "type": "output_contains",
+          "value": ["issues/low/", "issues/medium/"]
+        }
+      ]
+    }
+  ]
+}

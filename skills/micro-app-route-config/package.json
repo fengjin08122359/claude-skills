@@ -1,0 +1,35 @@
+{
+  "name": "micro-app-route-config-skill",
+  "version": "1.0.0",
+  "description": "微前端路由配置生成工具 - 自动生成路由、权限配置和 app.json 采集",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "micro-frontend",
+    "route-config",
+    "permission",
+    "app-json",
+    "vue-router"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.0",
+    "chalk": "^4.1.2",
+    "prettier": "^2.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/fs-extra": "^11.0.1",
+    "typescript": "^4.9.4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

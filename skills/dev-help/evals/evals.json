@@ -1,0 +1,40 @@
+{
+  "skill_name": "dev-help",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "simple-feature-development",
+      "prompt": "我需要给组合管理页面添加一个导出功能,支持将当前列表数据导出为Excel文件",
+      "expected_output": "应该将需求拆分为4-6个任务,包括API设计、前端实现、测试等,每个任务不超过2小时",
+      "files": []
+    },
+    {
+      "id": 2,
+      "eval_name": "bug-fix-task",
+      "prompt": "组合页面的树形菜单点击后没有反应,控制台显示'Cannot read property of undefined'错误",
+      "expected_output": "应该拆分为调试定位、修复代码、添加测试等任务,包含问题复现和验证步骤",
+      "files": []
+    },
+    {
+      "id": 3,
+      "eval_name": "refactoring-migration",
+      "prompt": "我想把CombinationHome组件从Options API迁移到Composition API,并添加TypeScript类型",
+      "expected_output": "应该拆分为分析结构、迁移data/methods、迁移computed/watch、添加类型定义等任务,保持功能等价",
+      "files": []
+    },
+    {
+      "id": 4,
+      "eval_name": "complex-feature-with-questions",
+      "prompt": "我要做一个智能预警系统,能监控各种指标并在异常时发送通知",
+      "expected_output": "应该先提出澄清问题(监控哪些指标、通知方式、实时性要求等),然后再拆解任务",
+      "files": []
+    },
+    {
+      "id": 5,
+      "eval_name": "api-integration",
+      "prompt": "需要对接新的用户中心API,获取用户信息和权限列表",
+      "expected_output": "应该拆分为类型定义、API封装、业务hook、错误处理等任务,包含验收标准",
+      "files": []
+    }
+  ]
+}

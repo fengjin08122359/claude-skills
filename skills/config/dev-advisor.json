@@ -1,0 +1,90 @@
+{
+  "$schema": "./.lingma/skills/dev-advisor.schema.json",
+  "trigger": {
+    "mode": "smart-prompt",
+    "patterns": [
+      "**/*.ts",
+      "**/*.vue",
+      "**/*.tsx",
+      "**/*.jsx"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "**/node_modules/**",
+      "**/dist/**"
+    ],
+    "throttle": {
+      "minIntervalSeconds": 300,
+      "minChangePercent": 10
+    },
+    "threshold": {
+      "autoPromptHighPriority": true,
+      "autoPromptMediumCount": 3
+    }
+  },
+  "checks": {
+    "typeSafety": {
+      "enabled": true,
+      "severity": "high",
+      "rules": [
+        "no-any",
+        "explicit-return-type",
+        "no-implicit-any",
+        "strict-null-checks"
+      ]
+    },
+    "vueBestPractices": {
+      "enabled": true,
+      "severity": "medium",
+      "rules": [
+        "composition-api-preferred",
+        "async-component",
+        "proper-lifecycle",
+        "props-validation"
+      ]
+    },
+    "performance": {
+      "enabled": true,
+      "severity": "low",
+      "rules": [
+        "virtual-scroll",
+        "cleanup-side-effects",
+        "computed-over-method",
+        "lazy-loading"
+      ]
+    },
+    "codeQuality": {
+      "enabled": true,
+      "severity": "medium",
+      "rules": [
+        "max-lines-per-function",
+        "max-nesting-depth",
+        "naming-convention",
+        "no-magic-numbers"
+      ]
+    }
+  },
+  "stepExecution": {
+    "autoVerify": true,
+    "verificationCommands": [
+      "pnpm vue-tsc --noEmit",
+      "pnpm eslint --fix",
+      "pnpm test --passWithNoTests"
+    ],
+    "maxStepsPerSession": 5,
+    "parallelVerification": true,
+    "maxParallelCommands": 2
+  },
+  "integrations": {
+    "stepExecutor": "step-executor",
+    "issueKnowledgeBase": "issue-knowledge-base",
+    "bestPracticeLibrary": "best-practice-library",
+    "progressTracker": "progress-tracker"
+  },
+  "reporting": {
+    "format": "markdown",
+    "includeCodeExamples": true,
+    "includeStatistics": true,
+    "maxIssuesPerReport": 20
+  }
+}

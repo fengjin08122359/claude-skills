@@ -1,0 +1,113 @@
+{
+  "taskId": "combination-v2-todo-phase1",
+  "planId": "combination-v2-refactor-plan",
+  "title": "Combination-V2 阶段1: 核心API补全",
+  "description": "实现 ProjectService API调用、树形菜单加载、策略配置提交等8个高优先级任务",
+  "status": "completed",
+  "steps": [
+    {
+      "id": "task-1.1",
+      "number": 1,
+      "title": "实现 ProjectService API调用 (createProject/deleteProject/renameProject)",
+      "status": "completed",
+      "startedAt": "2026-05-13T10:00:00Z",
+      "completedAt": "2026-05-13T10:05:00Z",
+      "duration": 300
+    },
+    {
+      "id": "task-1.2",
+      "number": 2,
+      "title": "实现树形菜单加载 (loadTreeMenu)",
+      "status": "completed",
+      "startedAt": "2026-05-13T10:05:00Z",
+      "completedAt": "2026-05-13T10:08:00Z",
+      "duration": 180
+    },
+    {
+      "id": "task-1.3",
+      "number": 3,
+      "title": "实现策略配置提交逻辑",
+      "status": "completed",
+      "startedAt": "2026-05-13T10:08:00Z",
+      "completedAt": "2026-05-13T10:12:00Z",
+      "duration": 240
+    },
+    {
+      "id": "task-1.4",
+      "number": 4,
+      "title": "实现虚拟组合逻辑",
+      "status": "completed",
+      "startedAt": "2026-05-13T10:12:00Z",
+      "completedAt": "2026-05-13T10:15:00Z",
+      "duration": 180
+    },
+    {
+      "id": "task-1.5",
+      "number": 5,
+      "title": "实现邮件配置API调用",
+      "status": "completed",
+      "startedAt": "2026-05-13T10:15:00Z",
+      "completedAt": "2026-05-13T10:17:00Z",
+      "duration": 120
+    },
+    {
+      "id": "task-1.6",
+      "number": 6,
+      "title": "实现组合删除逻辑 (TreeMenu)",
+      "status": "completed",
+      "startedAt": "2026-05-13T10:17:00Z",
+      "completedAt": "2026-05-13T10:20:00Z",
+      "duration": 180
+    },
+    {
+      "id": "task-1.7",
+      "number": 7,
+      "title": "完善 Cockpit 子组件 (4个)",
+      "status": "completed",
+      "startedAt": "2026-05-13T10:20:00Z",
+      "completedAt": "2026-05-13T10:23:00Z",
+      "duration": 180
+    },
+    {
+      "id": "task-1.8",
+      "number": 8,
+      "title": "实现 EmailConfigDialog 组件",
+      "status": "completed",
+      "startedAt": "2026-05-13T10:23:00Z",
+      "completedAt": "2026-05-13T10:25:00Z",
+      "duration": 120
+    }
+  ],
+  "progress": {
+    "currentStep": 8,
+    "totalSteps": 8,
+    "completedSteps": 8,
+    "failedSteps": 0,
+    "skippedSteps": 0,
+    "percentage": 100.0
+  },
+  "timing": {
+    "createdAt": "2026-05-13T10:00:00Z",
+    "startedAt": "2026-05-13T10:00:00Z",
+    "completedAt": "2026-05-13T10:25:00Z",
+    "totalDuration": 1500
+  },
+  "context": {
+    "workspaceRoot": "c:\\work\\monorepo-test",
+    "currentBranch": "combination-v2",
+    "relatedFiles": [
+      "workspaces/app-combination/src/pages/combination-v2/services/ProjectService.ts",
+      "workspaces/app-combination/src/pages/combination-v2/composables/useCombination/useCombinationHome.ts"
+    ]
+  },
+  "metadata": {
+    "createdBy": "dev-help",
+    "lastUpdatedBy": "dev-help",
+    "priority": "high",
+    "tags": [
+      "combination-v2",
+      "api-implementation",
+      "phase1"
+    ]
+  }
+}

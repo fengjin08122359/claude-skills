@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "description": "Skill 配置文件验证脚本示例",
+  "scripts": {
+    "validate-configs": "node scripts/validate-skill-configs.js"
+  },
+  "validation": {
+    "requiredFiles": [
+      "dev-advisor.json",
+      "step-executor.json",
+      "issue-knowledge-base.json",
+      "best-practice-library.json",
+      "progress-tracker.json"
+    ],
+    "requiredFields": {
+      "dev-advisor.json": ["trigger", "checks", "stepExecution"],
+      "step-executor.json": ["execution", "verification"],
+      "issue-knowledge-base.json": ["storage", "matching"],
+      "best-practice-library.json": ["storage", "recommendation"],
+      "progress-tracker.json": ["storage", "autoSave"]
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "./.lingma/skills/issue-knowledge-base.schema.json",
+  "storage": {
+    "issuesDir": ".lingma/skills/issue-knowledge-base/data/issues",
+    "archivesDir": ".lingma/skills/issue-knowledge-base/data/archives",
+    "indexFile": "index.json"
+  },
+  "matching": {
+    "minConfidence": 0.3,
+    "maxResults": 5,
+    "enableFrequencyWeighting": true,
+    "weights": {
+      "codePattern": 0.5,
+      "eslintRule": 0.3,
+      "filePattern": 0.1,
+      "frequency": 0.1
+    }
+  },
+  "maintenance": {
+    "autoArchiveAfterDays": 365,
+    "duplicateCheckEnabled": true,
+    "statisticsUpdateInterval": 3600,
+    "maxIssuesPerCategory": 50
+  },
+  "notifications": {
+    "onNewIssueAdded": true,
+    "onIssueUpdated": false,
+    "onThresholdReached": true,
+    "thresholds": {
+      "occurrenceCount": 10,
+      "severity": "high"
+    }
+  }
+}

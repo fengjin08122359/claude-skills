@@ -1,0 +1,83 @@
+{
+  "version": "3.0.25",
+  "vueVersion": "2.7.16",
+  "totalComponents": 44,
+  "lastUpdated": "2026-05-21",
+  "categories": {
+    "basic": {
+      "name": "基础组件",
+      "components": [
+        "Icon",
+        "Tag",
+        "Progress",
+        "Empty",
+        "Notice",
+        "TruncedTooltip"
+      ]
+    },
+    "form": {
+      "name": "表单组件",
+      "components": [
+        "Cascader",
+        "CascaderPanel",
+        "QuickDatePicker",
+        "LabelSelect",
+        "TagSelect",
+        "TagFilter",
+        "CompanySearch",
+        "CompareCompanyPicker",
+        "UserPicker"
+      ]
+    },
+    "dataDisplay": {
+      "name": "数据展示",
+      "components": [
+        "Card",
+        "CardLayout",
+        "DataCard",
+        "List",
+        "News",
+        "NewsStrip",
+        "Reports",
+        "PublicOpinion",
+        "ImageViewer",
+        "Tree",
+        "TreeSelect"
+      ]
+    },
+    "layout": {
+      "name": "布局组件",
+      "components": [
+        "PageLayout",
+        "ItemLayout",
+        "ItemLayoutV2",
+        "AnchorNav",
+        "Tabs",
+        "TabsMultiple",
+        "Segmented",
+        "AutoScroll",
+        "VirtualList",
+        "VtVirtualList"
+      ]
+    },
+    "feedback": {
+      "name": "反馈组件",
+      "components": [
+        "Loading",
+        "Modal",
+        "Drawer",
+        "ErrorPage",
+        "PageHeader"
+      ]
+    }
+  },
+  "quickAccess": {
+    "Card": "components-reference.md#dcard---卡片容器",
+    "Tree": "components-reference.md#dtree---树形控件",
+    "Cascader": "components-reference.md#dcascader---级联选择器",
+    "Modal": "components-reference.md#dmodal---模态框",
+    "Drawer": "components-reference.md#ddrawer---抽屉",
+    "Tabs": "components-reference.md#dtabs---标签页",
+    "Loading": "components-reference.md#dloading---加载服务"
+  }
+}
