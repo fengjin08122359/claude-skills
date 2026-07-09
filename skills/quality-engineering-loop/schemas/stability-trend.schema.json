@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "stability-trend.schema.json",
+  "title": "代码稳定性趋势",
+  "description": "standards-backfill-engine skill 的稳定性追踪输出",
+  "type": "object",
+  "required": ["module", "history"],
+  "properties": {
+    "module": { "type": "string" },
+    "history": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/StabilityRecord" }
+    },
+    "improvement_velocity": {
+      "type": "string",
+      "description": "改进速度，如 '+13分/周'"
+    }
+  },
+  "definitions": {
+    "StabilityRecord": {
+      "type": "object",
+      "required": ["date", "stability_score", "risk_items", "standards_compliance"],
+      "properties": {
+        "date": { "type": "string", "format": "date" },
+        "stability_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "risk_items": { "type": "integer", "minimum": 0 },
+        "standards_compliance": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    }
+  }
+}

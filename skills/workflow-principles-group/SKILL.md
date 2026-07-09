@@ -1,19 +1,20 @@
 ---
 name: workflow-principles-group
-description: A skill group containing 4 independent workflow skills for structured development process with TDD principles and feature-module classification. Issues and requirements are organized by functional modules (user-module, import-module, etc.) first, then by difficulty within each module. Use individual skills as needed: init-workflow-context (before starting work), coding-principles (during coding), analyze-and-split-requirements (when analyzing requests), finalize-workflow-context (after completing work).
+description: A skill group containing 3 independent workflow skills for structured development process with TDD principles and feature-module classification. Issues and requirements are organized by functional modules (user-module, import-module, etc.) first, then by difficulty within each module. Use individual skills as needed: init-workflow-context (before starting work), coding-principles (during coding), finalize-workflow-context (after completing work). Note: analyze-and-split-requirements has been promoted to a top-level skill and can be called directly as /analyze-and-split-requirements.
 ---
 
 # Workflow Principles Skill Group
 
-这个 skill 组包含 4 个独立的工作流 skill，用于规范开发流程，遵循 TDD 原则，**按功能模块分类管理 memory**。
+这个 skill 组包含 3 个独立的工作流 skill，用于规范开发流程，遵循 TDD 原则，**按功能模块分类管理 memory**。
+
+> **注意：** `analyze-and-split-requirements` 已提升为顶层独立技能，可直接调用 `/analyze-and-split-requirements`。
 
 ## Skill 组成员
 
 | Skill | 用途 | 触发时机 | 特殊功能 |
-|-------|------|---------|---------|
+| ----- | ---- | -------- | -------- |
 | **init-workflow-context** | 初始化 memory 目录，加载现有记忆 | 任务开始前 | 按功能模块识别 + 加载 |
 | **coding-principles** | 4条代码修改基础原则 | 编写/修改代码时 | Think/Simplicity/Surgical/Goal-Driven |
-| **analyze-and-split-requirements** | 分析开发难度，拆分需求/issues，记录决策 | 接收到新需求时 | 模块识别 + 内容确认 + 决策记录 + TDD + tracer-bullet |
 | **finalize-workflow-context** | 更新和压缩整理 memory | 任务完成后 | 按功能模块分类整理 |
 
 ## 使用方式
@@ -22,7 +23,7 @@ description: A skill group containing 4 independent workflow skills for structur
 
 ```
 /init-workflow-context   # 任务开始前调用（识别功能模块 + 加载记忆）
-/analyze-and-split-requirements  # 分析新需求（模块识别 + 内容确认 + 决策记录 + TDD + 拆分）
+/analyze-and-split-requirements  # 分析新需求（顶层独立技能，可直接调用）
 /coding-principles       # 编写代码时作为指导（4条原则）
 /finalize-workflow-context  # 任务完成后调用（按模块分类整理 + 归档决策）
 ```

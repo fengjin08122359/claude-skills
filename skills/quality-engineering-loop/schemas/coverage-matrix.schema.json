@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "coverage-matrix.schema.json",
+  "title": "PRD-代码-测试 覆盖矩阵",
+  "description": "coverage-matrix skill 的输出，三维覆盖矩阵供 CI 和人工消费",
+  "type": "object",
+  "required": ["matrix_id", "requirement_id", "generated_at", "rules", "summary"],
+  "properties": {
+    "matrix_id": { "type": "string" },
+    "requirement_id": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "rules": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/MatrixRule" }
+    },
+    "summary": { "$ref": "#/definitions/Summary" }
+  },
+  "definitions": {
+    "MatrixRule": {
+      "type": "object",
+      "required": ["id", "description", "prd", "code", "test", "status"],
+      "properties": {
+        "id": { "type": "string" },
+        "description": { "type": "string" },
+        "prd": { "$ref": "#/definitions/Coverage" },
+        "code": { "$ref": "#/definitions/Coverage" },
+        "test": { "$ref": "#/definitions/Coverage" },
+        "status": {
+          "type": "string",
+          "enum": ["COVERED", "CODE_GAP", "TEST_GAP", "PRD_GAP", "MISMATCH", "OVER_IMPL"]
+        },
+        "severity": { "type": "string", "enum": ["HIGH", "MEDIUM", "LOW"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "action": { "type": "string" }
+      }
+    },
+    "Coverage": {
+      "type": "object",
+      "required": ["exists"],
+      "properties": {
+        "exists": { "type": "boolean" },
+        "location": { "type": ["string", "null"] }
+      }
+    },
+    "Summary": {
+      "type": "object",
+      "required": ["total_rules", "covered", "test_gap", "code_gap", "coverage_rate"],
+      "properties": {
+        "total_rules": { "type": "integer", "minimum": 0 },
+        "covered": { "type": "integer", "minimum": 0 },
+        "test_gap": { "type": "integer", "minimum": 0 },
+        "code_gap": { "type": "integer", "minimum": 0 },
+        "prd_gap": { "type": "integer", "minimum": 0 },
+        "mismatch": { "type": "integer", "minimum": 0 },
+        "coverage_rate": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    }
+  }
+}
