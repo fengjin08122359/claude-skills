@@ -2,6 +2,9 @@
   "mcpServers": {
     "codebase-memory-mcp": {
       "url": "http://localhost:9749"
+    },
+    "agent-quality-loop": {
+
     }
   }
 }
