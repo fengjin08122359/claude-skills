@@ -5,6 +5,8 @@
 ### Active Modules
 
 - [prd-analysis-module](modules/prd-analysis-module/index.md) — PRD 分析与上下文总结
+- [e2e-testing-module](modules/e2e-testing-module/index.md) — e2e 包组件测试（vue-jest + @vue/test-utils）
+- [uiComponents-module](modules/uiComponents-module/index.md) — uiComponents 包单元测试补充
 
 ### Project Memory
 
@@ -33,3 +35,4 @@ memory/
     ├── decisions.md
     └── learnings.md
 ```
+

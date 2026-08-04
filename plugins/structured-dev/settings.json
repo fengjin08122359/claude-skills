@@ -1,0 +1,24 @@
+{
+  "structured-dev": {
+    "defaultMemoryDir": "memory",
+    "defaultOutputDir": "docs/structured-dev",
+    "autoLoadModuleMemory": true,
+    "autoArchiveOnFinalize": true
+  },
+  "init-workflow-context": {
+    "createMissingDirs": true,
+    "loadProjectConventions": true
+  },
+  "analyze-and-split-requirements": {
+    "defaultScoringMethod": "5-dimension",
+    "requireDecisionRecords": true
+  },
+  "to-issues": {
+    "defaultFormat": "tracer-bullet",
+    "classifyHITL": true
+  },
+  "coding-principles": {
+    "enforceTDD": true,
+    "selfCheckLists": ["jest"]
+  }
+}

@@ -1,0 +1,58 @@
+---
+name: test-alignment
+title: 测试用例-PRD 对齐报告
+skill: test-generation
+purpose: test-generation skill 的对齐比较输出，展示测试用例与 PRD 规则的映射关系
+data_flow: "出口 → PRD改进"
+---
+
+# 测试用例-PRD 对齐报告
+
+## 顶层结构
+
+|字段|类型|必填|说明|
+|---|---|---|---|
+|report_id|string|是|报告ID|
+|prd_file|string|是|PRD 文件路径|
+|test_source|string|是|测试用例来源（文件路径）|
+|generated_at|string(date-time)|否|生成时间|
+|mappings|array|是|PRD 规则与测试用例的映射|
+|unmappedTests|array|否|无对应 PRD 规则的冗余测试|
+|statistics|object|是|统计信息|
+
+## RuleMapping 定义
+
+|字段|类型|必填|约束|说明|
+|---|---|---|---|---|
+|ruleId|string|是||规则ID|
+|ruleDescription|string|是||规则描述|
+|testCases|array|否||关联的测试用例列表|
+|status|string|是|enum: COVERED, GAP, PARTIAL|覆盖状态|
+|suggestedTestCase|object|否||当 status=GAP 时的建议测试用例|
+
+### suggestedTestCase 结构
+
+|字段|类型|说明|
+|---|---|---|
+|name|string|建议用例名称|
+|scenario|string|建议场景描述|
+
+## UnmappedTest 定义
+
+|字段|类型|必填|说明|
+|---|---|---|---|
+|id|string|是|测试用例ID|
+|name|string|是|测试用例名称|
+|suggestion|string|否|可能是 PRD 遗漏，建议确认|
+
+## Statistics 定义
+
+|字段|类型|必填|约束|说明|
+|---|---|---|---|---|
+|totalRules|integer|是||总规则数|
+|coveredRules|integer|是||已覆盖规则数|
+|gapRules|integer|是||缺口规则数|
+|totalTests|integer|是||总测试数|
+|mappedTests|integer|是||已映射测试数|
+|unmappedTests|integer|是||未映射测试数|
+|alignmentRate|number|是|min: 0, max: 1|对齐率|

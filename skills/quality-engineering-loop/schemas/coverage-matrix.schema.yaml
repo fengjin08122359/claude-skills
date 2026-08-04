@@ -1,0 +1,52 @@
+---
+name: coverage-matrix
+title: PRD-代码-测试 覆盖矩阵
+skill: coverage-matrix
+purpose: coverage-matrix skill 的输出，三维覆盖矩阵供 CI 和人工消费
+data_flow: "出口 → CI/审查"
+---
+
+# PRD-代码-测试 覆盖矩阵
+
+## 顶层结构
+
+|字段|类型|必填|说明|
+|---|---|---|---|
+|matrix_id|string|是|矩阵ID|
+|requirement_id|string|是|需求ID|
+|generated_at|string(date-time)|是|生成时间|
+|rules|array|是|MatrixRule 列表|
+|summary|object|是|汇总统计|
+
+## MatrixRule 定义
+
+|字段|类型|必填|约束|说明|
+|---|---|---|---|---|
+|id|string|是||规则ID|
+|description|string|是||规则描述|
+|prd|Coverage|是||PRD 覆盖情况|
+|code|Coverage|是||代码覆盖情况|
+|test|Coverage|是||测试覆盖情况|
+|status|string|是|enum: COVERED, CODE_GAP, TEST_GAP, PRD_GAP, MISMATCH, OVER_IMPL|覆盖状态|
+|severity|string|否|enum: HIGH, MEDIUM, LOW|严重程度|
+|confidence|number|否|min: 0, max: 1|置信度|
+|action|string|否||建议行动|
+
+## Coverage 定义
+
+|字段|类型|必填|说明|
+|---|---|---|---|
+|exists|boolean|是|是否存在|
+|location|string\|null|否|位置（文件:行号）|
+
+## Summary 定义
+
+|字段|类型|必填|约束|说明|
+|---|---|---|---|---|
+|total_rules|integer|是|min: 0|总规则数|
+|covered|integer|是|min: 0|已覆盖数|
+|test_gap|integer|是|min: 0|测试缺少数|
+|code_gap|integer|是|min: 0|代码缺少数|
+|prd_gap|integer|否|min: 0|PRD 缺少数|
+|mismatch|integer|否|min: 0|偏差数|
+|coverage_rate|number|是|min: 0, max: 1|覆盖率|

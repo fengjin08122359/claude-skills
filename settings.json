@@ -1,22 +1,55 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(rm -rf .nyc_output coverage test-results)",
+      "Bash(COVERAGE=true node /c/work/monorepo-test/node_modules/playwright/cli.js test tests/ui-dialog.spec.ts --reporter=list)",
+      "Bash(node scripts/merge-coverage.js)",
+      "Bash(pnpm coverage *)",
+      "Bash(node packages/e2e/debug-formats.js)",
+      "Read(//c/Users/fengjin/.claude/skills/dui-knowledge-base/**)",
+      "WebSearch",
+      "WebFetch(domain:www.desplega.ai)",
+      "WebFetch(domain:percy.io)",
+      "WebFetch(domain:testquality.com)",
+      "WebFetch(domain:argos-ci.com)",
+      "Bash(bd dep *)",
+      "Bash(bd list *)",
+      "Bash(bd update *)",
+      "Bash(bd update monorepo-test-9kq --status=completed '--notes=PoC 精简版验证通过。4 个测试全部 PASS \\(12.5s\\)。 *)",
+      "Bash(bd close *)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bd prime --hook-json"
+          }
+        ]
+      }
+    ]
+  },
   "mcpServers": {
     "codebase-memory-mcp": {
+      "args": [],
       "command": "C:\\Users\\fengjin\\AppData\\Local\\Programs\\codebase-memory-mcp\\codebase-memory-mcp.exe",
-      "args": [
-        "--port=9749"
-      ],
       "env": {}
     },
-    "agent-quality-loop": {
-      "type": "local",
-      "command": "npx",
+    "quality-loop": {
       "args": [
+        "run",
+        "--node",
+        "24.18.0",
+        "npx",
         "-y",
-        "@anthropic/agent-quality-loop",
+        "agent-quality-loop",
         "--config",
         ".trae/skills/quality-engineering-loop/templates/.quality-loop.json"
       ],
-      "env": {}
+      "command": "volta"
     }
   }
 }

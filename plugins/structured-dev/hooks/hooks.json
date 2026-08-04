@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "hooks": {
+    "pre-skill-execution": {
+      "script": "./pre-skill-execution.sh",
+      "description": "任务开始前：自动加载功能模块记忆",
+      "env": {
+        "HOOK_SKILL_NAME": "${skill_name}",
+        "HOOK_TASK_DESC": "${task_description}",
+        "HOOK_MEMORY_DIR": "${memory_dir}",
+        "HOOK_CONFIG_DIR": "./config"
+      }
+    },
+    "post-skill-execution": {
+      "script": "./post-skill-execution.sh",
+      "description": "任务完成后：自动归档已完成 issues + 压缩记忆",
+      "env": {
+        "HOOK_SKILL_NAME": "${skill_name}",
+        "HOOK_MEMORY_DIR": "${memory_dir}",
+        "HOOK_CONFIG_DIR": "./config"
+      }
+    },
+    "on-large-file": {
+      "script": "./context-trim.sh",
+      "description": "读取大文件时自动裁剪上下文",
+      "trigger": "file-read",
+      "condition": "lines > 500",
+      "env": {
+        "HOOK_FILE_PATH": "${file_path}",
+        "HOOK_MAX_LINES": "500"
+      }
+    }
+  }
+}

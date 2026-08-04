@@ -1,0 +1,74 @@
+---
+name: prd-analysis
+title: PRD 结构化分析输出
+skill: prd-structured-analysis
+purpose: prd-structured-analysis skill 的输出，包含规则元组、状态迁移表、隐性规则
+data_flow: "出口 → 多个下游"
+---
+
+# PRD 结构化分析输出
+
+## 顶层结构
+
+|字段|类型|必填|说明|
+|---|---|---|---|
+|rules|array|是|从 PRD 提取的规则列表|
+|stateMachine|object|否|状态机定义（如果 PRD 包含状态流转）|
+|explicitRules|array|否|显性查询规则|
+|implicitRules|array|否|隐性规则（从显性描述推导）|
+
+## Rule 定义
+
+|字段|类型|必填|约束|说明|
+|---|---|---|---|---|
+|id|string|是|pattern: `^R\d{3}$`|规则ID|
+|description|string|是||规则描述|
+|type|string|是|enum: calculation, function_mapping, boundary_constraint, fallback, condition, constraint|规则类型|
+|formula|string|否||计算公式|
+|expression|string|否||表达式|
+|input|string|否||输入描述|
+|output|string|否||输出描述|
+|constraints|array[string]|否||约束条件列表|
+|condition|string|否||条件|
+|default|string|否||默认值|
+|enforcement|string|否|enum: mandatory, recommended|执行级别|
+|priority|string|是|enum: P0, P1, P2|优先级|
+
+## Transition 定义（状态迁移）
+
+|字段|类型|必填|说明|
+|---|---|---|---|
+|from|string|是|当前状态|
+|to|string|是|目标状态|
+|trigger|string|是|触发动作|
+|condition|string|否|触发条件|
+|legal|boolean|是|是否合法|
+|reason|string|否|非法原因|
+
+## TimeTrigger 定义（时间触发器）
+
+|字段|类型|必填|说明|
+|---|---|---|---|
+|state|string|是|触发时的状态|
+|duration|string|是|持续时间|
+|action|string|是|超时后动作|
+|raceConditions|array[string]|否|竞态条件列表|
+
+## QueryRule 定义（查询规则）
+
+|字段|类型|必填|约束|说明|
+|---|---|---|---|---|
+|id|string|是|pattern: `^Q\d{3}$`|查询规则ID|
+|description|string|是||描述|
+|sql|string|否||SQL 语句|
+|index_required|boolean|是||是否需要索引|
+
+## ImplicitRule 定义（隐性规则）
+
+|字段|类型|必填|约束|说明|
+|---|---|---|---|---|
+|id|string|是|pattern: `^QI\d{3}$`|隐性规则ID|
+|description|string|是||描述|
+|reason|string|是||推导原因|
+|risk|string|是|enum: HIGH, MEDIUM, LOW|风险等级|
+|verification|string|是||验证方式|

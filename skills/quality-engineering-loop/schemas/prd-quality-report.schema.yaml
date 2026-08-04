@@ -1,0 +1,52 @@
+---
+name: prd-quality-report
+title: PRD 质量评估报告
+skill: prd-quality-improver
+purpose: prd-quality-improver skill 的输出，6维质量评分 + 改进建议 + 版本趋势
+data_flow: "出口 → CI"
+---
+
+# PRD 质量评估报告
+
+## 顶层结构
+
+|字段|类型|必填|说明|
+|---|---|---|---|
+|report_id|string|是|报告ID|
+|prd_file|string|是|PRD 文件路径|
+|test_files|array[string]|否|关联测试文件列表|
+|generated_at|string(date-time)|否|生成时间|
+|scores|object|是|6维质量评分|
+|suggestions|array|是|改进建议列表|
+|version_trend|object|否|版本演进趋势（key 为版本号）|
+
+## Scores 定义（6维评分）
+
+|字段|类型|必填|约束|说明|
+|---|---|---|---|---|
+|completeness|integer|是|0-100|完整性|
+|clarity|integer|是|0-100|清晰度|
+|boundary_coverage|integer|是|0-100|边界覆盖|
+|exception_coverage|integer|是|0-100|异常覆盖|
+|consistency|integer|是|0-100|一致性|
+|testability|integer|是|0-100|可测试性|
+|overall|integer|是|0-100|综合评分|
+
+## Suggestion 定义
+
+|字段|类型|必填|约束|说明|
+|---|---|---|---|---|
+|id|string|是||建议ID|
+|priority|string|是|enum: P0, P1, P2|优先级|
+|category|string|是|enum: completeness, clarity, boundary, exception, consistency, testability, terminology|分类|
+|title|string|是||标题|
+|source_test|string|否||发现此建议的测试用例ID|
+|prd_location|string\|null|否||PRD 中的位置（null 表示无对应）|
+|suggested_text|string|否||建议补充/修改的文本|
+
+## VersionScore 定义
+
+|字段|类型|必填|约束|说明|
+|---|---|---|---|---|
+|overall|integer|是|0-100|版本综合评分|
+|rules|integer|是|min: 0|规则数量|

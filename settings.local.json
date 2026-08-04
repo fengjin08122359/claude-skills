@@ -1,8 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(curl -s http://localhost:9749)",
-      "Bash(npm run *)"
+      "Bash(npx tsc *)",
+      "Bash(npx webpack *)",
+      "Bash(npx jest *)",
+      "Bash(cp \"c:/work/monorepo-test/docs/working/prd/企业图谱-关联方V2.0.doc\" /tmp/prd_v20.doc)",
+      "Bash(cp \"c:/work/monorepo-test/docs/working/prd/企业图谱-关联方V2.1.doc\" /tmp/prd_v21.doc)"
     ]
   }
 }

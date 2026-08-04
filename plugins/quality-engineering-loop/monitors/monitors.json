@@ -1,0 +1,33 @@
+{
+  "name": "quality-loop-monitor",
+  "version": "1.0",
+  "description": "后台监控质量闭环运行状态",
+  "checks": [
+    {
+      "name": "stale-reports",
+      "description": "检查是否有超过 7 天未更新的质量报告",
+      "interval": "24h",
+      "path": "docs/working/quality-loop/",
+      "action": "notify",
+      "message": "质量报告已超过 7 天未更新，建议重新运行 /quality-engineering-loop"
+    },
+    {
+      "name": "coverage-degradation",
+      "description": "检查覆盖率是否下降",
+      "interval": "on-commit",
+      "path": ".quality-reports/coverage-matrix.json",
+      "condition": "coverage_rate < previous_coverage_rate * 0.95",
+      "action": "warn",
+      "message": "覆盖率下降超过 5%，请检查代码变更"
+    },
+    {
+      "name": "unresolved-gaps",
+      "description": "检查是否有长期未解决的 CODE_GAP",
+      "interval": "weekly",
+      "path": ".quality-reports/",
+      "condition": "code_gap_count > 0 for 2+ weeks",
+      "action": "escalate",
+      "message": "存在长期未解决的 CODE_GAP，建议优先处理"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "hooks": {
+    "pre-skill-execution": {
+      "script": "./pre-skill-execution.sh",
+      "description": "在 skill 执行前预处理输入（环境检测 + 大 PRD 摘要）",
+      "env": {
+        "HOOK_SKILL_NAME": "${skill_name}",
+        "HOOK_INPUT_FILE": "${input_file}",
+        "HOOK_TEMP_DIR": "${temp_dir}"
+      }
+    },
+    "post-skill-execution": {
+      "script": "./post-skill-execution.sh",
+      "description": "在 skill 执行后验证输出（JSON 验证 + 覆盖率门禁 + 清理）",
+      "env": {
+        "HOOK_SKILL_NAME": "${skill_name}",
+        "HOOK_OUTPUT_FILE": "${output_file}",
+        "HOOK_SCHEMA_FILE": "${schema_file}",
+        "HOOK_TEMP_DIR": "${temp_dir}"
+      }
+    },
+    "on-prd-change": {
+      "script": "./on-prd-change.sh",
+      "description": "检测 PRD 文件变更，提示重新分析",
+      "trigger": "git-commit",
+      "paths": ["docs/working/prd/**/*.md"],
+      "env": {
+        "HOOK_PRD_PATHS": "docs/working/prd/**/*.md"
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "codebase-memory-mcp": {
+      "command": "C:\\Users\\fengjin\\AppData\\Local\\Programs\\codebase-memory-mcp\\codebase-memory-mcp.exe",
+      "args": [],
+      "env": {}
+    },
+    "quality-loop": {
+      "command": "volta",
+      "args": [
+        "run",
+        "--node",
+        "24.18.0",
+        "npx",
+        "-y",
+        "agent-quality-loop",
+        "--config",
+        ".trae/skills/quality-engineering-loop/templates/.quality-loop.json"
+      ]
+    }
+  }
+}

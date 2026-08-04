@@ -1,0 +1,77 @@
+---
+name: quality-loop-config
+title: Quality Loop CI 配置
+skill: ci-integration
+purpose: .quality-loop.json 配置文件的 schema，定义门禁规则、触发器、通知
+data_flow: "配置文件"
+---
+
+# Quality Loop CI 配置
+
+## 顶层结构
+
+|字段|类型|必填|说明|
+|---|---|---|---|
+|version|string|是|配置版本|
+|description|string|否|配置描述|
+|gates|object|是|门禁规则|
+|triggers|object|是|触发器配置|
+|artifacts|object|否|产物配置|
+|notifications|object|否|通知配置|
+|dev_standards_backfill|object|否|规范反哺配置|
+
+## Gate 定义
+
+|字段|类型|必填|约束|说明|
+|---|---|---|---|---|
+|threshold|number|是||阈值|
+|level|string|是|enum: error, warning, info|级别|
+|message|string|是||提示信息|
+
+**内置门禁项：** coverage_rate / test_alignment_rate / code_gap_count / mismatch_count
+
+## Trigger 定义
+
+|字段|类型|必填|说明|
+|---|---|---|---|
+|paths|array[string]|是|触发路径（glob）|
+|actions|array[string]|是|触发动作列表|
+|gate|boolean|是|是否阻塞合并|
+|description|string|否|触发器描述|
+
+**内置触发器：** prd_change / code_change / test_change
+
+## Artifacts 定义
+
+|字段|类型|必填|约束|说明|
+|---|---|---|---|---|
+|output_dir|string|是||输出目录|
+|files|array[string]|是||产物文件列表|
+|retention_days|integer|否|min: 1|保留天数|
+
+## Notifications 定义
+
+### pr_comment
+
+|字段|类型|说明|
+|---|---|---|
+|enabled|boolean|是否启用|
+|template|string|模板名称|
+|include_matrix|boolean|是否包含矩阵|
+|include_action_items|boolean|是否包含行动项|
+
+### slack
+
+|字段|类型|说明|
+|---|---|---|
+|enabled|boolean|是否启用|
+|webhook_url|string|Webhook URL|
+|on_gate_failure|boolean|门禁失败时通知|
+
+## BackfillConfig 定义
+
+|字段|类型|必填|约束|说明|
+|---|---|---|---|---|
+|enabled|boolean|否||是否启用|
+|threshold_repeated_issues|integer|否|min: 1|重复问题阈值|
+|output_path|string|否||输出路径|

@@ -1,0 +1,18 @@
+{
+  "name": "structured-dev",
+  "version": "1.0.0",
+  "description": "结构化开发全流程 plugin：需求分析→模块分类→难度评分→TDD→归档",
+  "skills": [
+    "structured-dev",
+    "init-workflow-context",
+    "coding-principles",
+    "finalize-workflow-context",
+    "analyze-and-split-requirements",
+    "to-issues",
+    "to-prd",
+    "structured-requirement-confirmation"
+  ],
+  "entry": "structured-dev",
+  "hooks": "./hooks/hooks.json",
+  "settings": "./settings.json"
+}

@@ -1,0 +1,36 @@
+{
+  "name": "quality-engineering-loop",
+  "version": "1.0.0",
+  "description": "PRD→代码→测试用例 闭环质量工程技能组。通过结构化分析 PRD、生成覆盖矩阵、驱动 BDD 测试、反向填充开发规范，实现需求工程与质量效能的持续优化。",
+  "author": "Quality Engineering Team",
+  "license": "MIT",
+  "keywords": [
+    "quality",
+    "prd",
+    "testing",
+    "coverage",
+    "bdd",
+    "code-review",
+    "ci-cd"
+  ],
+  "skills": [
+    "quality-engineering-loop",
+    "prd-structured-analysis",
+    "coverage-matrix",
+    "test-generation",
+    "code-review-checklist",
+    "ci-integration",
+    "prd-quality-improver",
+    "standards-backfill-engine"
+  ],
+  "entry": "quality-engineering-loop",
+  "hooks": "./hooks/hooks.json",
+  "settings": "./settings.json",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/quality-engineering-loop"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

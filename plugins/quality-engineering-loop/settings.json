@@ -1,0 +1,35 @@
+{
+  "quality-engineering-loop": {
+    "defaultOutputDir": "docs/quality-loop",
+    "defaultTestDir": "tests/quality-loop",
+    "tempDirPrefix": ".scratch/quality-loop",
+    "cleanupOnSuccess": true,
+    "cleanupOnFailure": false,
+    "schemaValidation": true,
+    "prdPreprocessThreshold": 500,
+    "coverageGateThreshold": 0.80,
+    "testAlignmentGateThreshold": 0.90,
+    "enablePrComment": true,
+    "enableSlackNotification": false
+  },
+  "prd-structured-analysis": {
+    "outputFormat": "json",
+    "extractImplicitRules": true,
+    "extractStateMachine": true
+  },
+  "coverage-matrix": {
+    "includeCodeCoverage": true,
+    "includeTestCoverage": true,
+    "markOverImplementation": true
+  },
+  "test-generation": {
+    "defaultFramework": "jest",
+    "generateBDD": true,
+    "scopeDefault": "all"
+  },
+  "ci-integration": {
+    "configPath": ".quality-loop.json",
+    "enableGates": true,
+    "prCommentTemplate": "default"
+  }
+}

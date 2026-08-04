@@ -1,0 +1,42 @@
+# 归档策略配置
+# hooks/post-skill-execution.sh 和 finalize-workflow-context 读取此文件
+
+archive_policy:
+  low:
+    days: 7
+    condition: "status == completed"
+    target_dir: "archived/"
+    description: "低难度 completed 超过 7 天自动归档"
+
+  medium:
+    days: 14
+    condition: "status == implemented"
+    target_dir: "archived/"
+    description: "中难度 implemented 超过 14 天自动归档"
+
+  high:
+    days: 30
+    condition: "status == implemented AND test_passed == true"
+    target_dir: "archived/"
+    description: "高难度 implemented + 测试通过 超过 30 天自动归档"
+
+# 压缩配置
+compression:
+  enabled: true
+  max_file_size: 500      # 行数
+  summary_lines: 100      # 压缩后保留行数
+
+  # 始终保留的 section
+  preserve_sections:
+    - "Decision Records"
+    - "Acceptance criteria"
+    - "Test Results"
+    - "What to build"
+    - "Blocked by"
+
+# 合并策略
+merge:
+  # 标题相似度超过此阈值时建议合并
+  similarity_threshold: 0.8
+  # 合并后保留的文件名格式
+  merged_filename_pattern: "issue-{first_id}-merged.md"

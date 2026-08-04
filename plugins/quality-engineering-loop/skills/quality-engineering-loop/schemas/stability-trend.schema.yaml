@@ -1,0 +1,26 @@
+---
+name: stability-trend
+title: 代码稳定性趋势
+skill: standards-backfill-engine
+purpose: standards-backfill-engine skill 的稳定性追踪输出
+data_flow: "出口 → CI"
+---
+
+# 代码稳定性趋势
+
+## 顶层结构
+
+|字段|类型|必填|说明|
+|---|---|---|---|
+|module|string|是|模块名称|
+|history|array|是|StabilityRecord 列表|
+|improvement_velocity|string|否|改进速度，如 '+13分/周'|
+
+## StabilityRecord 定义
+
+|字段|类型|必填|约束|说明|
+|---|---|---|---|---|
+|date|string(date)|是||日期|
+|stability_score|integer|是|0-100|稳定性评分|
+|risk_items|integer|是|min: 0|风险项数量|
+|standards_compliance|number|是|0-1|规范符合率|

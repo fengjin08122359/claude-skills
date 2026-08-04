@@ -1,0 +1,70 @@
+{
+  "skill_name": "local-knowledge-base",
+  "description": "通用知识库检索引擎 — 从 AGENTS.md 的「检索索引」表动态发现检索目标",
+  "evals": [
+    {
+      "id": 1,
+      "name": "dui-component-query",
+      "prompt": "DCard 组件怎么用？支持哪些 Props？给我一个带搜索框的示例",
+      "expected_behavior": "读取 AGENTS.md → 匹配关键词 'DCard, Props' → 命中 'DUI 组件 API' 领域 → 检索 components-reference.md + examples.md",
+      "expected_files": ["docs/knowledge/dui-knowledge-base/components-reference.md", "docs/knowledge/dui-knowledge-base/examples.md"],
+      "domain": "DUI 组件 API"
+    },
+    {
+      "id": 2,
+      "name": "monorepo-init-faq",
+      "prompt": "pnpm install 的时候报 EPERM 权限错误，怎么解决？",
+      "expected_behavior": "读取 AGENTS.md → 匹配关键词 'EPERM, 权限错误' → 命中 '初始化 FAQ' 领域 → 检索 初始化FAQ.md",
+      "expected_files": ["docs/knowledge/monorepo/初始化FAQ.md"],
+      "domain": "初始化 FAQ"
+    },
+    {
+      "id": 3,
+      "name": "architecture-decision",
+      "prompt": "为什么项目选择用 Oxlint 替代 ESLint？有什么架构上的考量？",
+      "expected_behavior": "读取 AGENTS.md → 匹配关键词 'Oxlint, ESLint, 为什么' → 命中 'ESLint/Oxlint 迁移' + '架构决策' → 检索 OXLINT_*.md 和 adr/",
+      "expected_files": ["docs/knowledge/OXLINT_ARCHITECTURE.md", "docs/knowledge/adr/"],
+      "domain": "ESLint/Oxlint 迁移 + 架构决策"
+    },
+    {
+      "id": 4,
+      "name": "sub-app-business",
+      "prompt": "app-combination 组合监控有哪些业务模块？路由怎么配置的？",
+      "expected_behavior": "读取 AGENTS.md → 匹配关键词 'combination, 子应用' → 命中 '子应用业务' 领域 → 检索 workspaces/app-combination/AGENTS.md",
+      "expected_files": ["workspaces/app-combination/AGENTS.md"],
+      "domain": "子应用业务"
+    },
+    {
+      "id": 5,
+      "name": "test-case-lookup",
+      "prompt": "企业图谱相关的测试用例写了哪些？覆盖了哪些场景？",
+      "expected_behavior": "读取 AGENTS.md → 匹配关键词 '测试用例' → 命中 '测试用例' 领域 → 检索 docs/working/test/ 下匹配文件",
+      "expected_files": ["docs/working/test/TC-M12-related-party-graph-rendering.md", "docs/working/test/TC-M13-related-party-graph-interaction.md"],
+      "domain": "测试用例"
+    },
+    {
+      "id": 6,
+      "name": "design-system-tokens",
+      "prompt": "项目的主题色是什么？暗黑模式怎么切换？",
+      "expected_behavior": "读取 AGENTS.md → 匹配关键词 '主题, 暗黑模式' → 命中 'DUI 设计体系' 领域 → 检索 DESIGN.md",
+      "expected_files": ["docs/knowledge/dui-knowledge-base/DESIGN.md"],
+      "domain": "DUI 设计体系"
+    },
+    {
+      "id": 7,
+      "name": "global-architecture",
+      "prompt": "微前端架构下，主应用和子应用之间怎么通讯？权限怎么控制的？",
+      "expected_behavior": "读取 AGENTS.md → 匹配关键词 '微前端, 权限控制' → 命中 '全局技术规范' 领域 → 检索 GLOBAL_TECHNICAL_SUMMARY.md",
+      "expected_files": ["docs/knowledge/monorepo/GLOBAL_TECHNICAL_SUMMARY.md"],
+      "domain": "全局技术规范"
+    },
+    {
+      "id": 8,
+      "name": "no-match-handling",
+      "prompt": "Kubernetes 集群怎么部署？",
+      "expected_behavior": "读取 AGENTS.md → 匹配关键词 'Kubernetes, 部署' → 无命中领域 → 返回 '知识库中未找到相关内容'",
+      "expected_files": [],
+      "domain": "无匹配"
+    }
+  ]
+}

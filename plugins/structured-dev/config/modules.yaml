@@ -1,0 +1,50 @@
+# 功能模块关键词映射
+# hooks/pre-skill-execution.sh 读取此文件进行模块识别
+
+modules:
+  user-module:
+    description: 用户管理功能
+    keywords: [user, 用户, login, 登录, register, 注册, auth, 权限, permission]
+
+  import-module:
+    description: 批量导入功能
+    keywords: [import, 导入, batch, 批量, upload, 上传, bulk]
+
+  validation-module:
+    description: 数据验证功能
+    keywords: [validation, 验证, validate, 校验, check, 检查]
+
+  config-module:
+    description: 配置管理功能
+    keywords: [config, 配置, setting, env, 环境变量, environment]
+
+  api-module:
+    description: API 接口功能
+    keywords: [api, 接口, route, 路由, endpoint, controller, 路由]
+
+  db-module:
+    description: 数据库功能
+    keywords: [db, 数据库, database, storage, 存储, migration, 迁移]
+
+  ui-module:
+    description: UI/组件功能
+    keywords: [ui, 界面, component, 组件, view, 页面, page, interface]
+
+  test-module:
+    description: 测试功能
+    keywords: [test, 测试, spec, e2e, testing, 单元测试, 集成测试]
+
+  migration-module:
+    description: 迁移/合并功能
+    keywords: [migration, 迁移, merge, 合并, transfer, 整合, integration]
+
+  auth-module:
+    description: 认证授权功能
+    keywords: [auth, 认证, token, JWT, session, 授权]
+
+  init-module:
+    description: 初始化/启动功能
+    keywords: [init, 初始化, bootstrap, 启动, setup]
+
+# 默认模块（无法匹配时使用）
+default_module: general-module
